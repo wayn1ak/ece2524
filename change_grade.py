@@ -5,23 +5,24 @@ import fileinput
 
 verbose=False
 
-def main:
-	if len(argv) != 3:
-	    stderr.write("Usage: change_grade.py STRING VALUE\n")
-	    exit(1)
-    
-	for line in fileinput.input('-'):
+def change_grade(user_input):
+
+	result = ""	
+	for line in user_input:
 	    m = re.search(argv[1], line)
-	    values = line.rstrip().split(',') #note that split accepts an optional parameter to define what character the string is split on. If none is provided it defaults to any whitespace character
+	    values = line.split(',') #note that split accepts an optional parameter to define what character the string is split on. If none is provided it defaults to any whitespace character
 	    if m:
 	        if verbose:
 	            stderr.write("%r\n" % values)
-	        values[3] = argv[2] 
+	        values[3] = "%d\n" % float(argv[2])
 
-	    print ",".join(values)
+	    result += ",".join(values)
+	return result
 
-if _name_=='_main_':
-	from sys import stderr,stdout,argv,exit
-	main()
-
-	stderr.write("%r\n" % values)
+if __name__=='__main__':
+	from sys import stdin,stderr,stdout,argv,exit
+	if len(argv) != 3:
+	    stderr.write("Usage: change_grade.py STRING VALUE\n")
+	    exit(1)
+	result = change_grade(stdin)
+	stderr.write(result) 
