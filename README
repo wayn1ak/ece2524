@@ -1,0 +1,8 @@
+This module is a python script that will take 2 command line arguments,
+(a string and a number) and read input formatted like ['files/grade.csv']
+from standard input.
+
+If the string on the command line is found anywhere on a line of input, 
+then the grade on that line should be changed to that number and the 
+modified line printed to the standard out. Lines that do not match the string
+should be printed back to standard out unchanged.
